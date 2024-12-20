@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What did you do today?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #1e293b;
+            color: white;
+            text-align: center;
+        }
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            background-color: #0ea5e9;
+            color: white;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        header a:hover {
+            text-decoration: underline;
+        }
+        .title {
+            font-size: 2rem;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+        .fact-box {
+            max-width: 600px;
+            background-color: #334155;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        .fact {
+            font-size: 1.5rem;
+            margin: 0 0 20px;
+        }
+        .refresh {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #0ea5e9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .refresh:hover {
+            background-color: #0284c7;
+        }
+        .submit-box {
+            max-width: 600px;
+            background-color: #334155;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .submit-box input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .submit-box button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #0ea5e9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-box button:hover {
+            background-color: #0284c7;
+        }
+    </style>
+    <script>
+        // List of experiences.
+        const facts = [
+            "I went to school and made some friends.",
+            "We went to our christmas party.",
+        ];
+
+        // Function to display a random fact
+        function displayRandomFact() {
+            const factElement = document.querySelector('.fact');
+            const randomFact = facts[Math.floor(Math.random() * facts.length)];
+            factElement.textContent = randomFact;
+        }
+
+        // Function to add a new fact
+        function addNewFact() {
+            const newFactInput = document.querySelector('#new-fact');
+            const newFact = newFactInput.value.trim();
+
+            if (newFact) {
+                facts.push(newFact);
+                alert('Thank you for your sharing your experience!.');
+                newFactInput.value = ''; // Clear the input field
+            } else {
+                alert('Please enter an experience before submitting.');
+            }
+        }
+
+        // Initialize random fact on page load
+        window.onload = displayRandomFact;
+    </script>
+</head>
+<body>
+    <header>
+        <a href="MEMBRS.html">Members</a>
+    </header>
+    <h1 class="title">What did you do today?</h1>
+    <div class="fact-box">
+        <p class="fact"></p>
+        <a class="refresh" href="" onclick="displayRandomFact(); return false;">Show Me Another!</a>
+    </div>
+    <div class="submit-box">
+        <input type="text" id="new-fact" placeholder="Enter your experience">
+        <button onclick="addNewFact()">Submit Fact</button>
+    </div>
+</body>
+</html>
